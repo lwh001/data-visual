@@ -49,7 +49,7 @@ export default [{
     key: 'action',
     align:"center",
     width:"200px",
-    render:()=>{
+    render:(res,record)=>{
       return(
         <span>
             <Button  size="small">编辑</Button>

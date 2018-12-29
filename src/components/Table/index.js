@@ -1,7 +1,12 @@
 import React, { PureComponent, Fragment } from 'react';
 import { Table ,Button} from 'antd';
 import columns from "./tableflat";
-import Edit from "../EditDialog";
+import EditComponent from "../EditDialog";
+import {connect} from "react-redux";
+import {
+    CloseEdit,
+    OpenEdit
+} from "../../store/actionsCreator";
 
 class TableComponent extends PureComponent{
     constructor(props){
@@ -42,6 +47,7 @@ class TableComponent extends PureComponent{
     }
     render(){
         let {dataSource,bordered} = this.state;
+        let {isShowEditDialog,onShowEdit,onCloseEdit} = this.props;
         return(
             <Fragment>
                 <Table
@@ -49,11 +55,31 @@ class TableComponent extends PureComponent{
                     columns={columns}
                     bordered={bordered}
                 ></Table>
-                <Button type="primary">添加需求</Button>
-                <Edit></Edit>
+                <Button type="primary" onClick={onShowEdit}>添加需求</Button>
+                <EditComponent 
+                    isShowEditDialog={isShowEditDialog} 
+                    onClose={onCloseEdit}/>
             </Fragment>
         )
     }
 }
 
-export default TableComponent;
+const mapStateToProps = (state) => {
+  return {
+      isShowEditDialog:state.isShowEditDialog
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      onShowEdit() {
+          dispatch(OpenEdit({}));
+      },
+      onCloseEdit() {
+        dispatch(CloseEdit({}));
+    }
+  }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(TableComponent);

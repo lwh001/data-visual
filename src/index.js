@@ -1,15 +1,17 @@
-import React ,{Fragment}from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {GlobalStyle } from "./style";
 import 'antd/dist/antd.css'; 
+import { Provider } from 'react-redux';
+import store from "./store";
 
 let contain = 
-    <Fragment>
+    <Provider store={store}>
         <GlobalStyle></GlobalStyle>
         <App />
-    </Fragment>
+    </Provider>
 
 ReactDOM.render(contain, document.getElementById('root'));
 
