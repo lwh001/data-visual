@@ -1,59 +1,102 @@
 import React, { PureComponent, Fragment } from 'react';
 import { Table ,Button} from 'antd';
 import columns from "./tableflat";
+import {Link} from "react-router-dom";
 import EditComponent from "../EditDialog";
 import {connect} from "react-redux";
+import {requestApi} from "../../config";
 import {
     CloseEdit,
-    OpenEdit
+    OpenEdit,
+    GetData
 } from "../../store/actionsCreator";
 
 class TableComponent extends PureComponent{
     constructor(props){
         super(props);
-        this.state={
-            dataSource:[{
-                number: '1',
-                needId:"Gb542",
-                needName:"对话弹框",
-                belongName:"百秀项目组",
-                startTime:"2018.12.26",
-                testTime:"2018.12.31",
-                endTime:"2019.1.1",
-                action:"" 
-              },
-              {
-                number: '2',
-                needId:"Gb542",
-                needName:"对话弹框",
-                belongName:"百秀项目组",
-                startTime:"2018.12.26",
-                testTime:"2018.12.31",
-                endTime:"2019.1.1",
-                action:"" 
-              },
-              {
-                number: '3',
-                needId:"Gb542",
-                needName:"对话弹框",
-                belongName:"百秀项目组",
-                startTime:"2018.12.26",
-                testTime:"2018.12.31",
-                endTime:"2019.1.1",
-                action:"" 
-              }],
-            bordered:true
+    }
+    componentDidMount(){
+       this.getAllData();   
+    }
+    dealData=(res)=>{
+        for(var i in res){
+            switch(i){
+                case("priority"):{
+                    switch(res[i]){
+                        case(1):{
+                            res["priority"]="一般";
+                            break;
+                        }
+                        case(2):{
+                            res["priority"]="高";
+                            break;
+                        }
+                        
+                        default:{
+                            res["priority"]="无名";
+                        }
+                    }
+                    break;
+                }
+                case("mainGroup"):{
+                    switch(res[i]){
+                        case(1):{
+                            res["mainGroup"]="kede";
+                            break;
+                        }
+                        case(2):{
+                            res["mainGroup"]="百秀";
+                            break;
+                        }
+                        case(3):{
+                            res["mainGroup"]="中心";
+                            break;
+                        }
+                        case(4):{
+                            res["mainGroup"]="架构";
+                            break;
+                        }
+                        case(5):{
+                            res["mainGroup"]="后台";
+                            break;
+                        }
+                        case(6):{
+                            res["mainGroup"]="erp";
+                            break;
+                        }
+                        default:{
+                            res["mainGroup"]="无名"
+                        }
+                    }
+                    break;
+                }
+                default:{
+                    
+                }
+    
+            }
         }
+        return res;
+    }
+    getAllData=()=>{
+        let {onGetAllData} = this.props;
+        fetch(`${requestApi}/api/BackGround/GetPlanListByPage?pageIndex=1&pageSize=10000`).then(res=>res.json()).then(res=>{
+            res = res.items.map((item)=>{
+               let data = this.dealData(item);
+               return data;
+           }) 
+           onGetAllData(res);
+       })
     }
     render(){
-        let {dataSource,bordered} = this.state;
-        let {isShowEditDialog,onShowEdit,onCloseEdit} = this.props;
+        let {isShowEditDialog,onShowEdit,onCloseEdit,allData} = this.props;
         return(
             <Fragment>
+                <Link to="/">返回</Link>
                 <Table
-                    dataSource={dataSource}
+                    dataSource={allData}
                     columns={columns}
-                    bordered={bordered}
+                    bordered
                 ></Table>
                 <Button type="primary" onClick={onShowEdit}>添加需求</Button>
                 <EditComponent 
@@ -66,17 +109,21 @@ class TableComponent extends PureComponent{
 
 const mapStateToProps = (state) => {
   return {
-      isShowEditDialog:state.isShowEditDialog
+      isShowEditDialog:state.isShowEditDialog,
+      allData:state.allData
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+      onGetAllData(data){
+          dispatch(GetData(data));
+      },
       onShowEdit() {
           dispatch(OpenEdit({}));
       },
       onCloseEdit() {
-        dispatch(CloseEdit({}));
+          dispatch(CloseEdit({}));
     }
   }
 }
