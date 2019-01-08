@@ -21,7 +21,7 @@ class Home extends PureComponent{
             belongName:"可得项目组",
             startTime:"2018.12.26",
             testTime:"2018.12.31",
-            endTime:"2019.1.5",
+            endTime:"2019.1.9",
             action:"" 
           },
           {
@@ -31,7 +31,7 @@ class Home extends PureComponent{
             belongName:"Erp后台",
             startTime:"2018.12.10",
             testTime:"2018.12.16",
-            endTime:"2019.1.4",
+            endTime:"2019.1.14",
             action:"" 
           }],
           nowTime:""
