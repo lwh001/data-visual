@@ -1,6 +1,7 @@
 import React ,{PureComponent,Fragment} from "react";
 import {Progress} from "antd";
 import {Link} from "react-router-dom";
+import {requestApi } from "../../config";
 
 class Home extends PureComponent{
     state={
@@ -42,12 +43,13 @@ class Home extends PureComponent{
             let time3 = Date.parse(new Date())/1000;//现在时间
             _this.setState({nowTime:time3})
         },1000)
-        
+        fetch(`${requestApi}/api/Home`).then(res=>res.json()).then(res=>{
+            console.log(res);
+        })
     }
     render(){
         return(
             <Fragment>
-                <Link to="/addData">添加需求</Link>
                 {this.state.data.map((item,index)=>{
                     return(
                         <div key={index} style={{marginBottom:"20px"}}>
@@ -71,7 +73,7 @@ class Home extends PureComponent{
                                         ></Progress>
                                 
                             </div>
-                            <div style={{width:"500px"}}>
+                            {/* <div style={{width:"500px"}}>
                                 <Progress 
                                     percent={this.onCountTime(item.startTime,item.endTime)}  
                                     format={(percent) => percent>=100?"距离发布已结束":`距离发布已过 ${percent}%`}
@@ -81,7 +83,7 @@ class Home extends PureComponent{
                                     percent={this.onCountTime(item.startTime,item.testTime)} 
                                     format={(percent,successPercent) => percent>=100?`距离预发布已结束`:`距离预发布已过 ${percent}%`}
                                     ></Progress>
-                            </div>
+                            </div> */}
                         </div>
                     )
                 })}

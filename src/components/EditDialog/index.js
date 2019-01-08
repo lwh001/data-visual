@@ -207,14 +207,16 @@ class Edit extends PureComponent{
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 this.props.form.resetFields();
-                values.states="1";
+                values.status="1";
                 values.statusTime=new Date();
                 values["beginTime"]=values["beginTime"].format('YYYY-MM-DD');
                 values["releaseTime"]=values["releaseTime"].format('YYYY-MM-DD');
                 values["preReleaseTime"]= values["preReleaseTime"].format('YYYY-MM-DD');
                 if(editData){
                     values  = dealData(values);
-                    fetch(`${requestApi}/api/BackGround/UpdatePlan?id=`+editData["id"],{
+                    values["id"]=editData["id"];
+                    console.log(values);
+                    fetch(`${requestApi}/api/BackGround/UpdatePlan`,{
                         method:"POST",
                         body:JSON.stringify(values),
                         headers: {

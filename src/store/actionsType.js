@@ -4,3 +4,4 @@ export const GET_All_DATA = "GET_All_Data";
 export const ADD_DATA = "ADD_DATA";
 export const DEL_DATA = "DEL_DATA";
 export const EDIT_DATA = "EDIT_DATA";
+export const CLOSE_DATA = "CLOSE_DATA";

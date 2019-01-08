@@ -1,16 +1,14 @@
 import React, { PureComponent, Fragment } from 'react';
 import { Table ,Button,Divider,Popconfirm} from 'antd';
-import {Link} from "react-router-dom";
 import EditComponent from "../EditDialog";
 import {connect} from "react-redux";
-import Loading from "../Loading";
-import {requestApi} from "../../config";
 import {
     CloseEdit,
     OpenEdit,
     GetData,
     DelData,
-    EditData
+    EditData,
+    CloseData
 } from "../../store/actionsCreator";
 
 class TableComponent extends PureComponent{
@@ -81,7 +79,7 @@ class TableComponent extends PureComponent{
                         <Button type="danger" size="small" >删除</Button>
                       </Popconfirm>
                         <Divider type="vertical"></Divider>
-                      <Popconfirm onConfirm={()=>{alert("是否关闭？")}} okText="确定" cancelText="取消" title="是否关闭该需求？">
+                      <Popconfirm onConfirm={()=>{this.props.onCloseData(record.id)}} okText="确定" cancelText="取消" title="是否关闭该需求？">
                         <Button type="danger" size="small" >关闭</Button>
                       </Popconfirm>
                         
@@ -99,7 +97,6 @@ class TableComponent extends PureComponent{
         let {isShowEditDialog,onShowEdit,onCloseEdit,allData,editData} = this.props;
         return(
             <Fragment>
-                <Link to="/">返回</Link>
                 <Table
                     dataSource={allData}
                     columns={this.state.columns}
@@ -125,6 +122,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+      onCloseData(id){
+        dispatch(CloseData(id))
+      },
       onEditData(id){
         dispatch(EditData(id));
       },

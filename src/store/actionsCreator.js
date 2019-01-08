@@ -4,7 +4,8 @@ import {
     GET_All_DATA,
     ADD_DATA,
     DEL_DATA,
-    EDIT_DATA
+    EDIT_DATA,
+    CLOSE_DATA
 } from "./actionsType";
 import {requestApi} from "../config";
 
@@ -138,6 +139,27 @@ export const EditData = (id)=>{
                 type: EDIT_DATA,
                 data:res
             });
+        })
+    }
+}
+
+export const CloseData = (id)=>{
+    return dispatch=>{
+        fetch(`${requestApi}/api/BackGround/GetPlan?id=`+id)
+        .then(res=>res.json())
+        .then(res=>{
+            res.status = "2";
+            fetch(`${requestApi}/api/BackGround/UpdatePlan`,{
+                method:"POST",
+                body:JSON.stringify(res),
+                headers: {
+                    'Content-Type': 'application/json',
+                },}).then(res=>res.json()).then(res=>{
+                dispatch({
+                    type: CLOSE_DATA
+                });
+           }) 
+
         })
     }
 }
