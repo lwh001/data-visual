@@ -102,13 +102,13 @@ class Home extends PureComponent{
                                 
                             <PublishContain>
                                 <PublishProgress>
-                                    <PublishText>发预发布时间</PublishText>
+                                    <PublishText>{item.preReleaseTime}</PublishText>
                                     <ProgressState>
                                         <Progress percent={this.onCountTime(item.prePercent)}  strokeLinecap="square" showInfo={false} ></Progress>
                                     </ProgressState>
                                 </PublishProgress>
                                 <PublishProgress>
-                                    <PublishText>发布时间</PublishText>
+                                    <PublishText>{item.releaseTime}</PublishText>
                                     <ProgressState>
                                         <Progress  percent={this.onCountTime(item.relPercent)} strokeLinecap="square" showInfo={false} height="20"></Progress>
                                     </ProgressState>
@@ -168,6 +168,14 @@ class Home extends PureComponent{
                 }
                 case("beginTime"):{
                     res["beginTime"]=moment(res["beginTime"]).format('YYYY-MM-DD');
+                    break;
+                }
+                case("preReleaseTime"):{
+                    res["preReleaseTime"]=moment(res["preReleaseTime"]).format('YYYY-MM-DD');
+                    break;
+                }
+                case("releaseTime"):{
+                    res["releaseTime"]=moment(res["releaseTime"]).format('YYYY-MM-DD');
                     break;
                 }
                 default:{

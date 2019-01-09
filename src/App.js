@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import TableComponent from "./components/Table";
-import { BrowserRouter as Router, Route  } from 'react-router-dom';
+import { HashRouter as Router, Route  } from 'react-router-dom';
 import Home from "./pages/Home";
 
 class App extends PureComponent {
