@@ -28,6 +28,22 @@ const dealData=(res)=>{
                     }
                 }
                 break;
+            }case("status"):{
+                switch(res[i]){
+                    case(1):{
+                        res["status"]="正常";
+                        break;
+                    }
+                    case(2):{
+                        res["status"]="结束";
+                        break;
+                    }
+                    
+                    default:{
+                        res["priority"]="无名";
+                    }
+                }
+                break;
             }
             case("mainGroup"):{
                 switch(res[i]){
@@ -155,9 +171,16 @@ export const CloseData = (id)=>{
                 headers: {
                     'Content-Type': 'application/json',
                 },}).then(res=>res.json()).then(res=>{
-                dispatch({
-                    type: CLOSE_DATA
-                });
+                    fetch(`${requestApi}/api/BackGround/GetPlanListByPage?pageIndex=1&pageSize=10000`).then(res=>res.json()).then(res=>{
+                        res = res.items.map((item)=>{
+                           let data = dealData(item);
+                           return data;
+                       }) 
+                       dispatch({
+                            type: GET_All_DATA,
+                            data:res
+                        });
+                   }) 
            }) 
 
         })

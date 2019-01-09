@@ -207,7 +207,6 @@ class Edit extends PureComponent{
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 this.props.form.resetFields();
-                values.status="1";
                 values.statusTime=new Date();
                 values["beginTime"]=values["beginTime"].format('YYYY-MM-DD');
                 values["releaseTime"]=values["releaseTime"].format('YYYY-MM-DD');
@@ -215,7 +214,6 @@ class Edit extends PureComponent{
                 if(editData){
                     values  = dealData(values);
                     values["id"]=editData["id"];
-                    console.log(values);
                     fetch(`${requestApi}/api/BackGround/UpdatePlan`,{
                         method:"POST",
                         body:JSON.stringify(values),
@@ -227,6 +225,7 @@ class Edit extends PureComponent{
                             onGetAllData();
                         })
                 }else{
+                    values.status="1";
                     fetch(`${requestApi}/api/BackGround/AddPlan`,{
                         method:"POST",
                         body:JSON.stringify(values),

@@ -35,6 +35,12 @@ class TableComponent extends PureComponent{
                 align:"center",
                 width:"60px"
               }, {
+                title: '需求状态',
+                dataIndex: 'status',
+                key: 'status',
+                align:"center",
+                width:"60px"
+              }, {
                 title: '需求简称',
                 dataIndex: 'requestName',
                 key: 'requestName',
@@ -80,7 +86,7 @@ class TableComponent extends PureComponent{
                       </Popconfirm>
                         <Divider type="vertical"></Divider>
                       <Popconfirm onConfirm={()=>{this.props.onCloseData(record.id)}} okText="确定" cancelText="取消" title="是否关闭该需求？">
-                        <Button type="danger" size="small" >关闭</Button>
+                        <Button type="danger" size="small" >结束</Button>
                       </Popconfirm>
                         
                     </span>
