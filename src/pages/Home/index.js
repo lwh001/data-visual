@@ -1,8 +1,10 @@
 import React ,{PureComponent,Fragment} from "react";
 import {Progress} from "antd";
+import {ProgressBar} from "react-bootstrap";
 import {requestApi } from "../../config";
 import Swiper from "swiper";
 import {
+    TableTitleWrapper,
     ContainWrapper,
     SwiperGlobalStyle,
     Title,
@@ -30,9 +32,9 @@ class Home extends PureComponent{
         let swiperContainer = new Swiper(".swiper-container", {
             direction:'vertical',
             observer:true,
-            slidesPerView:"5",
+            slidesPerView:"4",
             autoplay: {
-                delay: 3000,
+                delay: 10000,
             },
         });
         let timer = setInterval(_this.onGetData,3600000)  //一个小时刷新一次数据 
@@ -55,8 +57,7 @@ class Home extends PureComponent{
             <Fragment>
             <SwiperGlobalStyle></SwiperGlobalStyle>
             <Title>开发部需求监控平台</Title>
-            
-            <ContainWrapper className="swiper-container">
+            <TableTitleWrapper >
                 <ScreenList>
                         <ProgressWarn>
                             
@@ -76,12 +77,16 @@ class Home extends PureComponent{
                         
                     <PublishContain>
                         <PublishProgress>
-                            <PublishText>预发布/发布时间</PublishText>
+                            <PublishText>预发布/发布时间(计划百分比)</PublishText>
                         </PublishProgress>
                     </PublishContain>
                 </ScreenList>
+                </TableTitleWrapper>
+            <ContainWrapper className="swiper-container">
                 <div className="swiper-wrapper">
                 {this.state.data.map((item,index)=>{
+                    let pre = this.onCountTime(item.prePercent);
+                    let rel = this.onCountTime(item.relPercent);
                     return(
                         <ScreenList key={index} className="swiper-slide">
                                 {item.priority==="2"?<ProgressWarn>
@@ -104,13 +109,21 @@ class Home extends PureComponent{
                                 <PublishProgress>
                                     <PublishText>{item.preReleaseTime}</PublishText>
                                     <ProgressState>
-                                        <Progress percent={this.onCountTime(item.prePercent)}  strokeLinecap="square" showInfo={false} ></Progress>
+                                        {pre<100?<ProgressBar>
+                                            <ProgressBar  bsStyle="success" now={pre<50?pre:50} key={1} label={pre<80&&`${pre}%`}/>
+                                            <ProgressBar bsStyle="warning" now={pre<80&&pre>=50?pre-50:pre<50?0:30} key={2} label={pre>=80&&pre<=100&&`${pre}%`}/>
+                                            <ProgressBar  bsStyle="danger" now={pre>80&&pre<=100?pre-80:0} key={3} />
+                                        </ProgressBar>:<ProgressBar><ProgressBar  bsStyle="danger" now={pre} key={4} label={`100%`}/></ProgressBar>}
                                     </ProgressState>
                                 </PublishProgress>
                                 <PublishProgress>
                                     <PublishText>{item.releaseTime}</PublishText>
                                     <ProgressState>
-                                        <Progress  percent={this.onCountTime(item.relPercent)} strokeLinecap="square" showInfo={false} height="20"></Progress>
+                                        {rel<100?<ProgressBar>
+                                            <ProgressBar  bsStyle="success" now={rel<50?rel:50} key={1} label={rel<80&&`${rel}%`}/>
+                                            <ProgressBar bsStyle="warning" now={rel<80&&rel>=50?rel-50:rel<50?0:30} key={2} label={rel>=80&&rel<=100&&`${rel}%`}/>
+                                            <ProgressBar  bsStyle="danger" now={rel>80&&rel<=100?rel-80:0} key={3} />
+                                        </ProgressBar>:<ProgressBar><ProgressBar  bsStyle="danger" now={rel} key={4} label={`100%`}/></ProgressBar>}
                                     </ProgressState>
                                 </PublishProgress>
                             </PublishContain>
@@ -118,6 +131,7 @@ class Home extends PureComponent{
                     )
                 })}
                  </div>
+                 
             </ContainWrapper>
             </Fragment>
             
@@ -129,7 +143,8 @@ class Home extends PureComponent{
             return val;
         }
         val = val*100
-        return val;
+        console.log(parseInt(val));
+        return parseInt(val);
     }
     dealData=(res)=>{
         for(var i in res){

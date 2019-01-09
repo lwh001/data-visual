@@ -44,6 +44,23 @@ const tailFormItemLayout = {
                 }
                 break;
             }
+            case("status"):{
+                switch(res[i]){
+                    case("正常"):{
+                        res["status"]=1;
+                        break;
+                    }
+                    case("结束"):{
+                        res["status"]=2;
+                        break;
+                    }
+                    
+                    default:{
+                        res["status"]=res["status"];
+                    }
+                }
+                break;
+            }
             case("mainGroup"):{
                 switch(res[i]){
                     case("kede"):{
@@ -214,6 +231,7 @@ class Edit extends PureComponent{
                 if(editData){
                     values  = dealData(values);
                     values["id"]=editData["id"];
+                    values["status"]=editData["status"]=="正常"?1:2;
                     fetch(`${requestApi}/api/BackGround/UpdatePlan`,{
                         method:"POST",
                         body:JSON.stringify(values),

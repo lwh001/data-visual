@@ -636,10 +636,17 @@ export const SwiperGlobalStyle = createGlobalStyle`
     }
 
 `
-
+export const TableTitleWrapper = styled.div`
+font-size:16px;
+width:80%;
+margin:0 auto;
+color:red;
+background:rgba(0,0,0,0.5);
+overflow: hidden;
+`
 export const ContainWrapper = styled.div`
     font-size:16px;
-    width:1400px;
+    width:80%;
     height:800px;
     margin:0 auto;
     background:rgba(0,0,0,0.2);
@@ -697,13 +704,19 @@ export const DemandNumber  = styled.div`
     border:1px solid blue;
 `
 export const DemandName  = styled.div`
-    flex:2;
+    flex:3;
     margin-right:20px;
     text-align:center;
     border:1px solid blue;
+    text-overflow: ellipsis;       
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;       
+    overflow: hidden;
+
 `
 export const PublishTime  = styled.div`
-    flex:2;
+    flex:1.5;
     margin-right:20px;
     text-align:center;
     border:1px solid blue;
@@ -720,11 +733,14 @@ export const PublishProgress  = styled.div`
     display:flex;
 `
 export const PublishText  = styled.div`
-    flex:1.5;
+    flex:1;
     text-align:center;
     margin-right:10px;
     border:1px solid blue;
 `
 export const ProgressState  = styled.div`
     flex:1;
+    .progress{
+        margin-top:10px
+    }
 `
