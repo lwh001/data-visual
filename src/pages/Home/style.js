@@ -697,7 +697,7 @@ export const DemandNumber  = styled.div`
     border:1px solid blue;
 `
 export const DemandName  = styled.div`
-    flex:3;
+    flex:2;
     margin-right:20px;
     text-align:center;
     border:1px solid blue;

@@ -17,6 +17,7 @@ import {
     WarnIcon,
     ProgressWarn
     } from "./style";
+import  moment from "moment";
 
 class Home extends PureComponent{
     state={
@@ -29,12 +30,12 @@ class Home extends PureComponent{
         let swiperContainer = new Swiper(".swiper-container", {
             direction:'vertical',
             observer:true,
-            slidesPerView:"4",
+            slidesPerView:"5",
             autoplay: {
                 delay: 3000,
             },
         });
-        let timer = setInterval(_this.onGetData,10000)  //一个小时刷新一次数据 
+        let timer = setInterval(_this.onGetData,3600000)  //一个小时刷新一次数据 
     }
     onGetData=()=>{
         let _this = this;
@@ -163,6 +164,10 @@ class Home extends PureComponent{
                             res["mainGroup"]="无名"
                         }
                     }
+                    break;
+                }
+                case("beginTime"):{
+                    res["beginTime"]=moment(res["beginTime"]).format('YYYY-MM-DD');
                     break;
                 }
                 default:{
