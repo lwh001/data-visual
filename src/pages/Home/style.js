@@ -1,6 +1,6 @@
 import styled ,{ createGlobalStyle }from "styled-components";
 import bg1 from "../../assets/img/timg2.jpg";
-import important from "../../assets/img/important.png";
+import important from "../../assets/img/im.png";
 
 
 export const SwiperGlobalStyle = createGlobalStyle`
@@ -18,6 +18,10 @@ export const SwiperGlobalStyle = createGlobalStyle`
     body{
         background-image: url(${bg1});
         color:#fff !important;
+        #root{
+            width:100%;
+            height:100%;
+        }
     }
     .pagination-number {
         right: 10px;
@@ -634,21 +638,32 @@ export const SwiperGlobalStyle = createGlobalStyle`
     /* Windows 8 IE 10 fix */
     -ms-perspective: 1200px;
     }
-
+`
+export const BodyWrapper = styled.div`
+    width:100%;
+    height:100%;
+    padding:50px;
+    background:rgba(9, 27, 54, 0.72);
+`
+export const Title = styled.h2`
+    font-size: 50px;
+    text-align: left;
+    color:#fff;
+    margin:10px 0;
+    padding-left: 20px;
+    border-left: 8px solid #fff;
 `
 export const TableTitleWrapper = styled.div`
 font-size:16px;
-width:80%;
+width:100%;
 margin:0 auto;
-background:rgba(0,0,0,0.5);
 overflow: hidden;
 `
 export const ContainWrapper = styled.div`
     font-size:16px;
-    width:80%;
-    height:800px;
+    width:100%;
+    height:780px;
     margin:0 auto;
-    background:rgba(0,0,0,0.2);
     overflow: hidden;
     background-image: url(${props => props.backgroundImage});
     .swiper-container {
@@ -663,12 +678,6 @@ export const ContainWrapper = styled.div`
       align-items: stretch;
     }
 `
-export const Title = styled.h2`
-    font-size: 50px;
-    text-align: left;
-    color:#fff;
-
-`
 export const ProgressWarn  = styled.div`
     width:40px;
     text-align:center;
@@ -676,24 +685,43 @@ export const ProgressWarn  = styled.div`
 export const WarnIcon  = styled.img.attrs({
     src:`${important}`
 })`
-    width:100%;
+    width:45px;
     height:auto;
 `
 export const ScreenTab  = styled.div`
-    width:98%;
+    width:100%;
     margin:0 auto;
-    line-height:40px;
+    height:60px;
     display:flex;
     flex-direction:row;
     text-align:center;
     justify-content:center;
     align-items:center;
+    color:#e4cc4c;
+    font-size:24px;
+    &>div{
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow:hidden;
+    }
 `
 export const ScreenList  = styled.div`
-    width:98%;
+    width:100%;
+    border-radius:20px;
     margin:0 auto;
     display:flex;
     flex-direction:row;
+    .itemList{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:100%;
+        height:65%;
+        border-radius:20px;
+        background:rgba(107, 111, 138, 0.19);
+    }
     &>div{
         display:flex;
         justify-content:center;
@@ -702,8 +730,7 @@ export const ScreenList  = styled.div`
     p{
         width:100%;
         margin:0;
-        font-size:40px;
-        border:1px solid blue;
+        font-size:32px;
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 1;
@@ -711,12 +738,16 @@ export const ScreenList  = styled.div`
         overflow:hidden;
     }
 `
+export const ImportantLevel  = styled.div`
+    flex:0.8;
+    margin-right:10px;
+`
 export const DemandNumber  = styled.div`
     flex:1;
     margin-right:10px;
 `
 export const DemandName  = styled.div`
-    flex:3;
+    flex:2;
     margin-right:10px;
 
 `
@@ -738,7 +769,6 @@ export const PublishText  = styled.div`
     flex:1;
     font-size:32px;
     margin-right:10px;
-    border:1px solid blue;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -747,7 +777,22 @@ export const PublishText  = styled.div`
 `
 export const ProgressState  = styled.div`
     flex:1;
+    margin-right:10px;
     .progress{
         margin-bottom:0;
+    }
+    .ant-progress-inner{
+        border-radius: 5px !important;
+    }
+    .ant-progress-bg{
+        border-radius: 5px !important;
+        background: -webkit-linear-gradient(left bottom,#f5ba0f,#ff5e00);
+        background: -o-linear-gradient(left bottom,#f5ba0f,#ff5e00);
+        background: -mos-linear-gradient(left bottom,#f5ba0f,#ff5e00);
+        background: -moz-linear-gradient(left bottom,#f5ba0f,#ff5e00);
+        background: linear-gradient(left bottom,#f5ba0f,#ff5e00);
+    }
+    .ant-progress-text{
+        color:#fff;
     }
 `

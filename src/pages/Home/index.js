@@ -4,11 +4,13 @@ import {ProgressBar} from "react-bootstrap";
 import {requestApi } from "../../config";
 import Swiper from "swiper";
 import {
+    BodyWrapper,
     TableTitleWrapper,
     ContainWrapper,
     SwiperGlobalStyle,
     Title,
     ScreenTab,
+    ImportantLevel,
     ScreenList,
     DemandNumber,
     DemandName,
@@ -57,39 +59,41 @@ class Home extends PureComponent{
         return(
             <Fragment>
             <SwiperGlobalStyle></SwiperGlobalStyle>
-            <Title>开发部需求监控平台</Title>
-            <TableTitleWrapper >
-                <ScreenTab>
-                    <ProgressWarn>
-                        
-                    </ProgressWarn>
-                    <DemandNumber>
-                        项目组
-                    </DemandNumber>
-                    <DemandNumber>
-                        需求编号
-                    </DemandNumber>
-                    <DemandName>
-                        需求名称
-                    </DemandName>
-                    <PublishTime>
-                        开始时间
-                    </PublishTime>
-                    <PublishContain>
-                        预发布/发布时间(计划百分比)
-                    </PublishContain>
-                </ScreenTab>
-                </TableTitleWrapper>
-            <ContainWrapper className="swiper-container">
+            <BodyWrapper>
+                <Title>开发部需求监控平台</Title>
+                <TableTitleWrapper >
+                    <ScreenTab>
+                        <ImportantLevel>
+                            优先级
+                        </ImportantLevel>
+                        <DemandNumber>
+                            项目组
+                        </DemandNumber>
+                        <DemandNumber>
+                            需求编号
+                        </DemandNumber>
+                        <DemandName>
+                            需求名称
+                        </DemandName>
+                        <PublishTime>
+                            开始时间
+                        </PublishTime>
+                        <PublishContain>
+                            预发布/发布时间(计划百分比)
+                        </PublishContain>
+                    </ScreenTab>
+                    </TableTitleWrapper>
+                <ContainWrapper className="swiper-container">
                 <div className="swiper-wrapper">
                 {this.state.data.map((item,index)=>{
                     let pre = this.onCountTime(item.prePercent);
                     let rel = this.onCountTime(item.relPercent);
                     return(
                         <ScreenList key={index} className="swiper-slide">
-                                {item.priority==="2"?<ProgressWarn>
+                            <div className="itemList">
+                                {item.priority==="2"?<ImportantLevel>
                                     <WarnIcon/>
-                                </ProgressWarn>:<ProgressWarn/>}
+                                </ImportantLevel>:<ImportantLevel/>}
                                 <DemandNumber>
                                     <p>{item.mainGroup}</p> 
                                 </DemandNumber>
@@ -107,30 +111,24 @@ class Home extends PureComponent{
                                 <PublishProgress>
                                     <PublishText>{item.preReleaseTime}</PublishText>
                                     <ProgressState>
-                                        {pre<100?<ProgressBar>
-                                            <ProgressBar  bsStyle="success" now={pre<50?pre:50} key={1} label={pre<80&&`${pre}%`}/>
-                                            <ProgressBar bsStyle="warning" now={pre<80&&pre>=50?pre-50:pre<50?0:30} key={2} label={pre>=80&&pre<=100&&`${pre}%`}/>
-                                            <ProgressBar  bsStyle="danger" now={pre>80&&pre<=100?pre-80:0} key={3} />
-                                        </ProgressBar>:<ProgressBar><ProgressBar  bsStyle="danger" now={pre} key={4} label={`100%`}/></ProgressBar>}
+                                        <Progress percent={pre} strokeWidth="20px" strokeLinecap="square" />
                                     </ProgressState>
                                 </PublishProgress>
                                 <PublishProgress>
                                     <PublishText>{item.releaseTime}</PublishText>
                                     <ProgressState>
-                                        {rel<100?<ProgressBar>
-                                            <ProgressBar  bsStyle="success" now={rel<50?rel:50} key={1} label={rel<80&&`${rel}%`}/>
-                                            <ProgressBar bsStyle="warning" now={rel<80&&rel>=50?rel-50:rel<50?0:30} key={2} label={rel>=80&&rel<=100&&`${rel}%`}/>
-                                            <ProgressBar  bsStyle="danger" now={rel>80&&rel<=100?rel-80:0} key={3} />
-                                        </ProgressBar>:<ProgressBar><ProgressBar  bsStyle="danger" now={rel} key={4} label={`100%`}/></ProgressBar>}
+                                    <Progress percent={rel} strokeWidth="20px" strokeLinecap="square"/>
                                     </ProgressState>
                                 </PublishProgress>
                             </PublishContain>
+                            </div>
                         </ScreenList>
                     )
                 })}
                  </div>
                  
             </ContainWrapper>
+            </BodyWrapper>
             </Fragment>
             
         )
