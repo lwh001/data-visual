@@ -8,6 +8,7 @@ import {
     ContainWrapper,
     SwiperGlobalStyle,
     Title,
+    ScreenTab,
     ScreenList,
     DemandNumber,
     DemandName,
@@ -58,29 +59,26 @@ class Home extends PureComponent{
             <SwiperGlobalStyle></SwiperGlobalStyle>
             <Title>开发部需求监控平台</Title>
             <TableTitleWrapper >
-                <ScreenList>
-                        <ProgressWarn>
-                            
-                        </ProgressWarn>
-                        <DemandNumber>
-                            项目组
-                        </DemandNumber>
-                        <DemandNumber>
-                            需求编号
-                        </DemandNumber>
-                        <DemandName>
-                                需求名称
-                        </DemandName>
-                        <PublishTime>
-                                开始时间
-                        </PublishTime>
+                <ScreenTab>
+                    <ProgressWarn>
                         
+                    </ProgressWarn>
+                    <DemandNumber>
+                        项目组
+                    </DemandNumber>
+                    <DemandNumber>
+                        需求编号
+                    </DemandNumber>
+                    <DemandName>
+                        需求名称
+                    </DemandName>
+                    <PublishTime>
+                        开始时间
+                    </PublishTime>
                     <PublishContain>
-                        <PublishProgress>
-                            <PublishText>预发布/发布时间(计划百分比)</PublishText>
-                        </PublishProgress>
+                        预发布/发布时间(计划百分比)
                     </PublishContain>
-                </ScreenList>
+                </ScreenTab>
                 </TableTitleWrapper>
             <ContainWrapper className="swiper-container">
                 <div className="swiper-wrapper">
@@ -93,16 +91,16 @@ class Home extends PureComponent{
                                     <WarnIcon/>
                                 </ProgressWarn>:<ProgressWarn/>}
                                 <DemandNumber>
-                                    {item.mainGroup} 
+                                    <p>{item.mainGroup}</p> 
                                 </DemandNumber>
                                 <DemandNumber>
-                                    {item.requertNo} 
+                                    <p>{item.requertNo}</p> 
                                 </DemandNumber>
                                 <DemandName>
-                                     {item.requestName}
+                                    <p>{item.requestName}</p>
                                 </DemandName>
                                 <PublishTime>
-                                     {item.beginTime}
+                                    <p>{item.beginTime}</p>
                                 </PublishTime>
                                 
                             <PublishContain>

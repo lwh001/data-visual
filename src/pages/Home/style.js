@@ -640,7 +640,6 @@ export const TableTitleWrapper = styled.div`
 font-size:16px;
 width:80%;
 margin:0 auto;
-color:red;
 background:rgba(0,0,0,0.5);
 overflow: hidden;
 `
@@ -659,25 +658,16 @@ export const ContainWrapper = styled.div`
      .swiper-slide {
       text-align: center;
       font-size: 18px;
-      /* Center slide text vertically */
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
       display: flex;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
       justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
+      align-items: stretch;
     }
 `
 export const Title = styled.h2`
     font-size: 50px;
-    text-align: center;
-    color:#21e1d8;
+    text-align: left;
+    color:#fff;
+
 `
 export const ProgressWarn  = styled.div`
     width:40px;
@@ -689,58 +679,75 @@ export const WarnIcon  = styled.img.attrs({
     width:100%;
     height:auto;
 `
-export const ScreenList  = styled.div`
-    width:96%;
+export const ScreenTab  = styled.div`
+    width:98%;
+    margin:0 auto;
     line-height:40px;
     display:flex;
     flex-direction:row;
-    justify-content:space-around;
+    text-align:center;
+    justify-content:center;
     align-items:center;
+`
+export const ScreenList  = styled.div`
+    width:98%;
+    margin:0 auto;
+    display:flex;
+    flex-direction:row;
+    &>div{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+    p{
+        width:100%;
+        margin:0;
+        font-size:40px;
+        border:1px solid blue;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow:hidden;
+    }
 `
 export const DemandNumber  = styled.div`
     flex:1;
-    margin-right:20px;
-    text-align:center;
-    border:1px solid blue;
+    margin-right:10px;
 `
 export const DemandName  = styled.div`
     flex:3;
-    margin-right:20px;
-    text-align:center;
-    border:1px solid blue;
-    text-overflow: ellipsis;       
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;       
-    overflow: hidden;
+    margin-right:10px;
 
 `
 export const PublishTime  = styled.div`
     flex:1.5;
-    margin-right:20px;
-    text-align:center;
-    border:1px solid blue;
+    margin-right:10px;
 `
 export const PublishContain  = styled.div`
     flex:3;
-    display:flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
 `
 export const PublishProgress  = styled.div`
     width:100%;
     display:flex;
+    justify-content:center;
+    align-items:center;
 `
 export const PublishText  = styled.div`
     flex:1;
-    text-align:center;
+    font-size:32px;
     margin-right:10px;
     border:1px solid blue;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow:hidden;
 `
 export const ProgressState  = styled.div`
     flex:1;
     .progress{
-        margin-top:10px
+        margin-bottom:0;
     }
 `
