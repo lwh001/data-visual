@@ -38,6 +38,7 @@ class Home extends PureComponent{
             slidesPerView:"4",
             autoplay: {
                 delay: 10000,
+                disableOnInteraction:false
             },
         });
         let timer = setInterval(_this.onGetData,3600000)  //一个小时刷新一次数据 
