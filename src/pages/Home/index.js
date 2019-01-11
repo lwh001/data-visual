@@ -1,6 +1,5 @@
 import React ,{PureComponent,Fragment} from "react";
 import {Progress} from "antd";
-import {ProgressBar} from "react-bootstrap";
 import {requestApi } from "../../config";
 import Swiper from "swiper";
 import {
@@ -19,8 +18,7 @@ import {
     PublishContain,
     PublishText,
     ProgressState,
-    WarnIcon,
-    ProgressWarn
+    WarnIcon
     } from "./style";
 import  moment from "moment";
 
@@ -70,9 +68,6 @@ class Home extends PureComponent{
                         <DemandNumber>
                             项目组
                         </DemandNumber>
-                        {/* <DemandNumber>
-                            需求编号
-                        </DemandNumber> */}
                         <DemandName>
                             需求简称
                         </DemandName>
@@ -98,9 +93,6 @@ class Home extends PureComponent{
                                 <DemandNumber>
                                     <p>{item.mainGroup}</p> 
                                 </DemandNumber>
-                                {/* <DemandNumber>
-                                    <p>{item.requertNo}</p> 
-                                </DemandNumber> */}
                                 <DemandName>
                                     <p>{item.requestName}</p>
                                 </DemandName>
@@ -139,8 +131,7 @@ class Home extends PureComponent{
             val = 100;
             return val;
         }
-        val = val*100
-        console.log(parseInt(val));
+        val = val*100;
         return parseInt(val);
     }
     dealData=(res)=>{
