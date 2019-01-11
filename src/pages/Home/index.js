@@ -37,7 +37,7 @@ class Home extends PureComponent{
             observer:true,
             slidesPerView:"4",
             autoplay: {
-                delay: 10000,
+                delay: 15000,
                 disableOnInteraction:false
             },
         });
@@ -70,11 +70,11 @@ class Home extends PureComponent{
                         <DemandNumber>
                             项目组
                         </DemandNumber>
-                        <DemandNumber>
+                        {/* <DemandNumber>
                             需求编号
-                        </DemandNumber>
+                        </DemandNumber> */}
                         <DemandName>
-                            需求名称
+                            需求简称
                         </DemandName>
                         <PublishTime>
                             开始时间
@@ -98,9 +98,9 @@ class Home extends PureComponent{
                                 <DemandNumber>
                                     <p>{item.mainGroup}</p> 
                                 </DemandNumber>
-                                <DemandNumber>
+                                {/* <DemandNumber>
                                     <p>{item.requertNo}</p> 
-                                </DemandNumber>
+                                </DemandNumber> */}
                                 <DemandName>
                                     <p>{item.requestName}</p>
                                 </DemandName>

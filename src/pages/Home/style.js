@@ -642,7 +642,7 @@ export const SwiperGlobalStyle = createGlobalStyle`
 export const BodyWrapper = styled.div`
     width:100%;
     height:100%;
-    padding:50px;
+    padding:20px 50px;
     background:rgba(9, 27, 54, 0.72);
 `
 export const Title = styled.h2`
@@ -662,7 +662,7 @@ overflow: hidden;
 export const ContainWrapper = styled.div`
     font-size:16px;
     width:100%;
-    height:780px;
+    height:82%;
     margin:0 auto;
     overflow: hidden;
     background-image: url(${props => props.backgroundImage});
@@ -675,7 +675,7 @@ export const ContainWrapper = styled.div`
       font-size: 18px;
       display: flex;
       justify-content: center;
-      align-items: stretch;
+      align-items: center;
     }
 `
 export const ProgressWarn  = styled.div`
@@ -718,7 +718,7 @@ export const ScreenList  = styled.div`
         justify-content:center;
         align-items:center;
         width:100%;
-        height:65%;
+        height:70%;
         border-radius:20px;
         background:rgba(107, 111, 138, 0.19);
     }
@@ -739,15 +739,15 @@ export const ScreenList  = styled.div`
     }
 `
 export const ImportantLevel  = styled.div`
-    flex:0.8;
+    flex:0.6;
     margin-right:10px;
 `
 export const DemandNumber  = styled.div`
-    flex:1;
+    flex:0.8;
     margin-right:10px;
 `
 export const DemandName  = styled.div`
-    flex:2;
+    flex:3;
     margin-right:10px;
 
 `
