@@ -71,11 +71,11 @@ const tailFormItemLayout = {
                         res["mainGroup"]=2;
                         break;
                     }
-                    case("中心"):{
+                    case("业务平台"):{
                         res["mainGroup"]=3;
                         break;
                     }
-                    case("架构"):{
+                    case("技术平台"):{
                         res["mainGroup"]=4;
                         break;
                     }
@@ -165,8 +165,8 @@ class Edit extends PureComponent{
                                         <Select  style={{ width: 120 }} >
                                             <Option value="1">kede</Option>
                                             <Option value="2">百秀</Option>
-                                            <Option value="3" >中心</Option>
-                                            <Option value="4">架构</Option>
+                                            <Option value="3" >业务平台</Option>
+                                            <Option value="4">技术平台</Option>
                                             <Option value="5">后台</Option>
                                             <Option value="6">erp</Option>
                                         </Select>

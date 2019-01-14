@@ -157,11 +157,11 @@ class Home extends PureComponent{
                             break;
                         }
                         case(3):{
-                            res["mainGroup"]="中心";
+                            res["mainGroup"]="业务平台";
                             break;
                         }
                         case(4):{
-                            res["mainGroup"]="架构";
+                            res["mainGroup"]="技术平台";
                             break;
                         }
                         case(5):{
