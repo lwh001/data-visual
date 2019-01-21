@@ -1,6 +1,7 @@
 import React ,{PureComponent,Fragment} from "react";
-import {Progress} from "antd";
-import {ProgressBar} from "react-bootstrap";
+
+
+import { Progress} from "antd";
 import {requestApi } from "../../config";
 import Swiper from "swiper";
 import {
@@ -12,6 +13,7 @@ import {
     ScreenTab,
     ImportantLevel,
     ScreenList,
+    ItemList,
     DemandNumber,
     DemandName,
     PublishTime,
@@ -19,8 +21,9 @@ import {
     PublishContain,
     PublishText,
     ProgressState,
-    WarnIcon,
-    ProgressWarn
+
+    ProgressWarn,
+    WarnIcon
     } from "./style";
 import  moment from "moment";
 
@@ -59,8 +62,10 @@ class Home extends PureComponent{
     render(){
         return(
             <Fragment>
-            <SwiperGlobalStyle></SwiperGlobalStyle>
-            <BodyWrapper>
+            
+                <SwiperGlobalStyle></SwiperGlobalStyle>
+                    
+                <BodyWrapper>
                 <Title>开发部需求监控平台</Title>
                 <TableTitleWrapper >
                     <ScreenTab>
@@ -70,9 +75,6 @@ class Home extends PureComponent{
                         <DemandNumber>
                             项目组
                         </DemandNumber>
-                        {/* <DemandNumber>
-                            需求编号
-                        </DemandNumber> */}
                         <DemandName>
                             需求简称
                         </DemandName>
@@ -91,16 +93,14 @@ class Home extends PureComponent{
                     let rel = this.onCountTime(item.relPercent);
                     return(
                         <ScreenList key={index} className="swiper-slide">
-                            <div className="itemList">
+                            
+                            <ItemList backgroundColor={item.bgColor}>
                                 {item.priority==="2"?<ImportantLevel>
                                     <WarnIcon/>
                                 </ImportantLevel>:<ImportantLevel/>}
                                 <DemandNumber>
                                     <p>{item.mainGroup}</p> 
                                 </DemandNumber>
-                                {/* <DemandNumber>
-                                    <p>{item.requertNo}</p> 
-                                </DemandNumber> */}
                                 <DemandName>
                                     <p>{item.requestName}</p>
                                 </DemandName>
@@ -108,28 +108,31 @@ class Home extends PureComponent{
                                     <p>{item.beginTime}</p>
                                 </PublishTime>
                                 
-                            <PublishContain>
-                                <PublishProgress>
-                                    <PublishText>{item.preReleaseTime}</PublishText>
-                                    <ProgressState>
-                                        <Progress percent={pre} strokeWidth="20px" strokeLinecap="square" />
-                                    </ProgressState>
-                                </PublishProgress>
-                                <PublishProgress>
-                                    <PublishText>{item.releaseTime}</PublishText>
-                                    <ProgressState>
-                                    <Progress percent={rel} strokeWidth="20px" strokeLinecap="square"/>
-                                    </ProgressState>
-                                </PublishProgress>
-                            </PublishContain>
-                            </div>
+                            
+                                <PublishContain>
+                                    <PublishProgress>
+                                        <PublishText>{item.preReleaseTime}</PublishText>
+                                        <ProgressState>
+                                            <Progress percent={pre} strokeWidth="20px" strokeLinecap="square" />
+                                        </ProgressState>
+                                    </PublishProgress>
+                                    <PublishProgress>
+                                        <PublishText>{item.releaseTime}</PublishText>
+                                        <ProgressState>
+                                        <Progress percent={rel} strokeWidth="20px" strokeLinecap="square"/>
+                                        </ProgressState>
+                                    </PublishProgress>
+                                </PublishContain>
+                            </ItemList>
                         </ScreenList>
                     )
                 })}
-                 </div>
-                 
-            </ContainWrapper>
-            </BodyWrapper>
+
+                </div>
+                    
+                </ContainWrapper>
+                
+                </BodyWrapper>
             </Fragment>
             
         )
@@ -139,8 +142,7 @@ class Home extends PureComponent{
             val = 100;
             return val;
         }
-        val = val*100
-        console.log(parseInt(val));
+        val = val*100;
         return parseInt(val);
     }
     dealData=(res)=>{
@@ -150,30 +152,40 @@ class Home extends PureComponent{
                     switch(res[i]){
                         case(1):{
                             res["mainGroup"]="kede";
+                            res["bgColor"]="rgba(228, 84, 205, 0.19)";
                             break;
                         }
                         case(2):{
                             res["mainGroup"]="百秀";
+                            res["bgColor"]="rgba(84, 117, 228, 0.19)";
                             break;
                         }
                         case(3):{
+                            
                             res["mainGroup"]="业务平台";
+                            res["bgColor"]="rgba(84, 228, 193, 0.19)";
                             break;
                         }
                         case(4):{
+                            
                             res["mainGroup"]="技术平台";
+                            res["bgColor"]="rgba(101, 241, 53, 0.19)";
                             break;
                         }
                         case(5):{
                             res["mainGroup"]="后台";
+                            res["bgColor"]="rgba(224, 52, 52, 0.15)";
                             break;
                         }
                         case(6):{
                             res["mainGroup"]="erp";
+                            res["bgColor"]="rgba(228, 138, 84, 0.19)";
                             break;
                         }
                         default:{
-                            res["mainGroup"]="无名"
+                            
+                            res["mainGroup"]="无名";
+                            res["bgColor"]="rgba(228, 138, 84, 0.19)";
                         }
                     }
                     break;
