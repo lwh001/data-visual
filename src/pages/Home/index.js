@@ -1,5 +1,5 @@
 import React ,{PureComponent,Fragment} from "react";
-import {Progress} from "antd";
+import { Progress} from "antd";
 import {requestApi } from "../../config";
 import Swiper from "swiper";
 import {
@@ -11,6 +11,7 @@ import {
     ScreenTab,
     ImportantLevel,
     ScreenList,
+    ItemList,
     DemandNumber,
     DemandName,
     PublishTime,
@@ -57,8 +58,9 @@ class Home extends PureComponent{
     render(){
         return(
             <Fragment>
-            <SwiperGlobalStyle></SwiperGlobalStyle>
-            <BodyWrapper>
+                <SwiperGlobalStyle></SwiperGlobalStyle>
+                    
+                <BodyWrapper>
                 <Title>开发部需求监控平台</Title>
                 <TableTitleWrapper >
                     <ScreenTab>
@@ -86,7 +88,7 @@ class Home extends PureComponent{
                     let rel = this.onCountTime(item.relPercent);
                     return(
                         <ScreenList key={index} className="swiper-slide">
-                            <div className="itemList">
+                            <ItemList backgroundColor={item.bgColor}>
                                 {item.priority==="2"?<ImportantLevel>
                                     <WarnIcon/>
                                 </ImportantLevel>:<ImportantLevel/>}
@@ -100,28 +102,29 @@ class Home extends PureComponent{
                                     <p>{item.beginTime}</p>
                                 </PublishTime>
                                 
-                            <PublishContain>
-                                <PublishProgress>
-                                    <PublishText>{item.preReleaseTime}</PublishText>
-                                    <ProgressState>
-                                        <Progress percent={pre} strokeWidth="20px" strokeLinecap="square" />
-                                    </ProgressState>
-                                </PublishProgress>
-                                <PublishProgress>
-                                    <PublishText>{item.releaseTime}</PublishText>
-                                    <ProgressState>
-                                    <Progress percent={rel} strokeWidth="20px" strokeLinecap="square"/>
-                                    </ProgressState>
-                                </PublishProgress>
-                            </PublishContain>
-                            </div>
+                                <PublishContain>
+                                    <PublishProgress>
+                                        <PublishText>{item.preReleaseTime}</PublishText>
+                                        <ProgressState>
+                                            <Progress percent={pre} strokeWidth="20px" strokeLinecap="square" />
+                                        </ProgressState>
+                                    </PublishProgress>
+                                    <PublishProgress>
+                                        <PublishText>{item.releaseTime}</PublishText>
+                                        <ProgressState>
+                                        <Progress percent={rel} strokeWidth="20px" strokeLinecap="square"/>
+                                        </ProgressState>
+                                    </PublishProgress>
+                                </PublishContain>
+                            </ItemList>
                         </ScreenList>
                     )
                 })}
-                 </div>
-                 
-            </ContainWrapper>
-            </BodyWrapper>
+                </div>
+                    
+                </ContainWrapper>
+                
+                </BodyWrapper>
             </Fragment>
             
         )
@@ -141,30 +144,37 @@ class Home extends PureComponent{
                     switch(res[i]){
                         case(1):{
                             res["mainGroup"]="kede";
+                            res["bgColor"]="rgba(228, 84, 205, 0.19)";
                             break;
                         }
                         case(2):{
                             res["mainGroup"]="百秀";
+                            res["bgColor"]="rgba(84, 117, 228, 0.19)";
                             break;
                         }
                         case(3):{
                             res["mainGroup"]="中心";
+                            res["bgColor"]="rgba(84, 228, 193, 0.19)";
                             break;
                         }
                         case(4):{
                             res["mainGroup"]="架构";
+                            res["bgColor"]="rgba(101, 241, 53, 0.19)";
                             break;
                         }
                         case(5):{
                             res["mainGroup"]="后台";
+                            res["bgColor"]="rgba(224, 52, 52, 0.15)";
                             break;
                         }
                         case(6):{
                             res["mainGroup"]="erp";
+                            res["bgColor"]="rgba(228, 138, 84, 0.19)";
                             break;
                         }
                         default:{
-                            res["mainGroup"]="无名"
+                            res["mainGroup"]="无名";
+                            res["bgColor"]="rgba(228, 138, 84, 0.19)";
                         }
                     }
                     break;

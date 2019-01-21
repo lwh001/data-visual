@@ -646,7 +646,7 @@ export const BodyWrapper = styled.div`
     background:rgba(9, 27, 54, 0.72);
 `
 export const Title = styled.h2`
-    font-size: 50px;
+    font-size: 42px;
     text-align: left;
     color:#fff;
     margin:10px 0;
@@ -654,10 +654,10 @@ export const Title = styled.h2`
     border-left: 8px solid #fff;
 `
 export const TableTitleWrapper = styled.div`
-font-size:16px;
-width:100%;
-margin:0 auto;
-overflow: hidden;
+    font-size:16px;
+    width:100%;
+    margin:0 auto;
+    overflow: hidden;
 `
 export const ContainWrapper = styled.div`
     font-size:16px;
@@ -713,20 +713,6 @@ export const ScreenList  = styled.div`
     margin:0 auto;
     display:flex;
     flex-direction:row;
-    .itemList{
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        width:100%;
-        height:70%;
-        border-radius:20px;
-        background:rgba(107, 111, 138, 0.19);
-    }
-    &>div{
-        display:flex;
-        justify-content:center;
-        align-items:center;
-    }
     p{
         width:100%;
         margin:0;
@@ -737,6 +723,15 @@ export const ScreenList  = styled.div`
         -webkit-box-orient: vertical;
         overflow:hidden;
     }
+`
+export const ItemList=styled.div`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    height:70%;
+    border-radius:20px;
+    background-color:${props=>props.backgroundColor};
 `
 export const ImportantLevel  = styled.div`
     flex:0.6;
