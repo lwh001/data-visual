@@ -719,8 +719,7 @@ export const ScreenList  = styled.div`
         font-size:32px;
         text-overflow: ellipsis;
         display: -webkit-box;
-        -webkit-line-clamp: 2;
-        word-break: keep-all;
+        -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
         overflow:hidden;
     }
@@ -743,13 +742,17 @@ export const DemandNumber  = styled.div`
     margin-right:10px;
 `
 export const DemandName  = styled.div`
-    flex:3;
+    flex:2.5;
     margin-right:10px;
 
 `
 export const PublishTime  = styled.div`
-    flex:1.5;
+    flex:2;
     margin-right:10px;
+    &>div{
+        display:inline-block;
+        width:50%;
+    }
 `
 export const PublishContain  = styled.div`
     flex:3;
