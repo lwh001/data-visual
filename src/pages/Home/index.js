@@ -115,13 +115,13 @@ class Home extends PureComponent{
                                     <PublishProgress>
                                         <PublishText>{item.preReleaseTime}</PublishText>
                                         <ProgressState>
-                                            <Progress percent={pre} strokeWidth="20px" strokeLinecap="square" />
+                                            <Progress percent={pre} strokeWidth={20} strokeLinecap="square" />
                                         </ProgressState>
                                     </PublishProgress>
                                     <PublishProgress>
                                         <PublishText>{item.releaseTime}</PublishText>
                                         <ProgressState>
-                                        <Progress percent={rel} strokeWidth="20px" strokeLinecap="square"/>
+                                        <Progress percent={rel} strokeWidth={20} strokeLinecap="square"/>
                                         </ProgressState>
                                     </PublishProgress>
                                 </PublishContain>

@@ -22,7 +22,8 @@ class TableComponent extends PureComponent{
                 key: 'id',
                 align:"center",
                 width:"50px",
-                defaultSortOrder:"ascend"
+                defaultSortOrder:"ascend",
+                sortOrder:"ascend"
               }, {
                 title: '需求编号',
                 dataIndex: 'requertNo',
