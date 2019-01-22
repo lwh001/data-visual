@@ -105,7 +105,7 @@ class Home extends PureComponent{
                                     <p>{item.requestName}</p>
                                 </DemandName>
                                 <PublishTime>
-                                    <p>{item.matchingGroup===null?null:item.matchingGroup.map((item)=>{
+                                    <p>{item.matchingGroup===null?null:item.matchingGroup.map((item,index)=>{
                                         return item+" ";
                                     })}</p>
                                 </PublishTime>

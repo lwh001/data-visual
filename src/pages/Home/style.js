@@ -719,7 +719,8 @@ export const ScreenList  = styled.div`
         font-size:32px;
         text-overflow: ellipsis;
         display: -webkit-box;
-        -webkit-line-clamp: 1;
+        -webkit-line-clamp: 2;
+        word-break: keep-all;
         -webkit-box-orient: vertical;
         overflow:hidden;
     }
