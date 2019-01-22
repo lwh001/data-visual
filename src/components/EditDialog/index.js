@@ -1,5 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
-import { DatePicker,Form  ,Button,Input,Select,Modal} from 'antd';
+import { DatePicker,Form  ,Button,Input,Select,Modal,Checkbox,Row,Col} from 'antd';
 import {connect} from "react-redux";
 import moment from "moment";
 import {requestApi} from "../../config";
@@ -172,6 +172,22 @@ class Edit extends PureComponent{
                                         </Select>
                         )}
                     </Form.Item>
+                    <Form.Item {...formItemLayout} label="配合组">
+                        {getFieldDecorator("matchingGroup", {
+                            initialValue: editData===null?"":editData["matchingGroup"],
+                        })(
+                            <Checkbox.Group style={{ width: "100%" }}>
+                                <Row>
+                                    <Col span={8}><Checkbox value="1">kede</Checkbox></Col>
+                                    <Col span={8}><Checkbox value="2">百秀</Checkbox></Col>
+                                    <Col span={8}><Checkbox value="5">后台</Checkbox></Col>
+                                    <Col span={8}><Checkbox value="6">erp</Checkbox></Col>
+                                    <Col span={12}><Checkbox value="3">业务平台</Checkbox></Col>
+                                    <Col span={12}><Checkbox value="4">技术平台</Checkbox></Col>
+                                </Row> 
+                            </Checkbox.Group>
+                        )}
+                        </Form.Item>
                     <Form.Item label="开始时间" {...formItemLayout}>
                         {getFieldDecorator('beginTime', {
                                 rules: [
@@ -222,12 +238,14 @@ class Edit extends PureComponent{
         let {onCloseEdit,onGetAllData,editData}  =this.props;
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
+            console.log(values)
             if (!err) {
                 this.props.form.resetFields();
                 values.statusTime=new Date();
                 values["beginTime"]=values["beginTime"].format('YYYY-MM-DD');
                 values["releaseTime"]=values["releaseTime"].format('YYYY-MM-DD');
                 values["preReleaseTime"]= values["preReleaseTime"].format('YYYY-MM-DD');
+                values["matchingGroup"]=values["matchingGroup"].join(",");
                 if(editData){
                     values  = dealData(values);
                     values["id"]=editData["id"];

@@ -79,7 +79,7 @@ class Home extends PureComponent{
                             需求简称
                         </DemandName>
                         <PublishTime>
-                            开始时间
+                            配合组
                         </PublishTime>
                         <PublishContain>
                             预发布/发布时间(计划百分比)
@@ -105,7 +105,9 @@ class Home extends PureComponent{
                                     <p>{item.requestName}</p>
                                 </DemandName>
                                 <PublishTime>
-                                    <p>{item.beginTime}</p>
+                                    <p>{item.matchingGroup===null?null:item.matchingGroup.map((item)=>{
+                                        return item+" ";
+                                    })}</p>
                                 </PublishTime>
                                 
                             
@@ -201,6 +203,39 @@ class Home extends PureComponent{
                 case("releaseTime"):{
                     res["releaseTime"]=moment(res["releaseTime"]).format('YYYY-MM-DD');
                     break;
+                }
+                case("matchingGroup"):{
+                    if(res["matchingGroup"]===null){
+                        res["matchingGroup"]=null
+                        break;
+                    }else{
+                        res["matchingGroup"]=res["matchingGroup"].split(",");
+                        let newRes = res["matchingGroup"].map((item,index)=>{
+                            if(item=="1"){
+                                return "kede"
+                            }
+                            if(item=="2"){
+                                return "百秀"
+                            }
+                            if(item=="3"){
+                                return "业务平台"
+                            }
+                            if(item=="4"){
+                                return "技术平台"
+                            }
+                            if(item=="5"){
+                                return "后台"
+                            }
+                            if(item=="6"){
+                                return "erp"
+                            }
+
+                        })
+                        res["matchingGroup"] = newRes
+                        console.log(res["matchingGroup"])
+                        break;
+                    }
+                    
                 }
                 default:{
                     

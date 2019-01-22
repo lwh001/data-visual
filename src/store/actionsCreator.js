@@ -77,6 +77,10 @@ const dealData=(res)=>{
                 }
                 break;
             }
+            case("matchingGroup"):{
+                res["matchingGroup"]=res["matchingGroup"]===null?null:res["matchingGroup"].split(",");
+                break;
+            }
             default:{
                 
             }

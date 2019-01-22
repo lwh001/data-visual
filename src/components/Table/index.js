@@ -21,7 +21,8 @@ class TableComponent extends PureComponent{
                 dataIndex: 'id',
                 key: 'id',
                 align:"center",
-                width:"50px"
+                width:"50px",
+                defaultSortOrder:"ascend"
               }, {
                 title: '需求编号',
                 dataIndex: 'requertNo',
@@ -53,23 +54,60 @@ class TableComponent extends PureComponent{
                 align:"center",
                 width:"100px"
               }, {
+                title: '配合组',
+                dataIndex: 'matchingGroup',
+                key: 'matchingGroup',
+                align:"center",
+                width:"200px",
+                render:(res,record)=>{
+                  if(res===null){
+                    return null;
+                  }else{
+                    let newRes = res.map((item,index)=>{
+                      if(item=="1"){
+                          return "kede"
+                      }
+                      if(item=="2"){
+                          return "百秀"
+                      }
+                      if(item=="3"){
+                          return "业务平台"
+                      }
+                      if(item=="4"){
+                          return "技术平台"
+                      }
+                      if(item=="5"){
+                          return "后台"
+                      }
+                      if(item=="6"){
+                          return "erp"
+                      }
+
+                  })
+                    let str = newRes.map((item)=>{
+                      return item+" ";
+                    })
+                    return str
+                  }
+                }
+              },{
                 title: '开始时间',
                 dataIndex: 'beginTime',
                 key: 'beginTime',
                 align:"center",
-                width:"200px"
+                width:"150px"
               }, {
                 title: '发预发布时间',
                 dataIndex: 'preReleaseTime',
                 key: 'preReleaseTime',
                 align:"center",
-                width:"200px"
+                width:"150px"
               }, {
                 title: '发布时间',
                 dataIndex: 'releaseTime',
                 key: 'releaseTime',
                 align:"center",
-                width:"200px"
+                width:"150px"
               }, {
                 title: '操作',
                 dataIndex: 'action',
