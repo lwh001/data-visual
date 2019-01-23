@@ -749,6 +749,7 @@ export const DemandName  = styled.div`
 export const PublishTime  = styled.div`
     flex:2;
     margin-right:10px;
+    text-align: left;
     &>div{
         display:inline-block;
         width:50%;
