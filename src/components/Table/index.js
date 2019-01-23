@@ -61,8 +61,8 @@ class TableComponent extends PureComponent{
                 align:"center",
                 width:"200px",
                 render:(res,record)=>{
-                  if(res===null){
-                    return null;
+                  if(res===""){
+                    return "";
                   }else{
                     let newRes = res.map((item,index)=>{
                       if(item=="1"){

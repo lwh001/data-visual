@@ -246,6 +246,7 @@ class Edit extends PureComponent{
                 values["releaseTime"]=values["releaseTime"].format('YYYY-MM-DD');
                 values["preReleaseTime"]= values["preReleaseTime"].format('YYYY-MM-DD');
                 values["matchingGroup"]=values["matchingGroup"].join(",");
+                console.log(values);
                 if(editData){
                     values  = dealData(values);
                     values["id"]=editData["id"];

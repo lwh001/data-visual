@@ -105,7 +105,7 @@ class Home extends PureComponent{
                                     <p>{item.requestName}</p>
                                 </DemandName>
                                 <PublishTime>
-                                    {item.matchingGroup===null?null:item.matchingGroup.map((item,index)=>{
+                                    {item.matchingGroup===""?"":item.matchingGroup.map((item,index)=>{
                                         return (
                                             <div><p>{item}</p></div>
                                         )
@@ -207,8 +207,8 @@ class Home extends PureComponent{
                     break;
                 }
                 case("matchingGroup"):{
-                    if(res["matchingGroup"]===null){
-                        res["matchingGroup"]=null
+                    if(res["matchingGroup"]===""){
+                        res["matchingGroup"]=""
                         break;
                     }else{
                         res["matchingGroup"]=res["matchingGroup"].split(",");
@@ -233,8 +233,7 @@ class Home extends PureComponent{
                             }
 
                         })
-                        res["matchingGroup"] = newRes
-                        console.log(res["matchingGroup"])
+                        res["matchingGroup"] = newRes;
                         break;
                     }
                     
